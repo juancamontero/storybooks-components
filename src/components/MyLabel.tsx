@@ -1,6 +1,6 @@
 import "./myLabel.css";
 
-interface MyLabelProps {
+export interface MyLabelProps {
   /**
    * Label to display in the component
    */

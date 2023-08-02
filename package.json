@@ -1,15 +1,37 @@
 {
-  "name": "my-story-book",
-  "private": true,
+  "name": "juankipanky-my-story-book",
+  "private": false,
+  "license": "MIT",
   "version": "0.0.0",
   "type": "module",
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "repository": {
+    "url": "https://github.com/juancamontero/storybooks-components.git",
+    "type": "git"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "start": "storybook dev -p 6006",
+    "build": "npm run clean && tsc && npm run copy-files",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build -o docs",
-    "chromatic": "npx chromatic --project-token=chpt_6684b8e5a15f5a5"
+    "chromatic": "npx chromatic --project-token=chpt_6684b8e5a15f5a5",
+    "clean": "rimraf dist",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.3"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -28,10 +50,21 @@
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "chromatic": "^6.20.0",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.1",
+    "semantic-release": "^21.0.7",
     "storybook": "^7.1.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
   "readme": "ERROR: No README data found!",
   "_id": "my-story-book@0.0.0"
 }
